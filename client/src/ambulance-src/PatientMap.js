@@ -45,6 +45,7 @@ componentDidMount() {
 
 
 requestforHelp = () => {
+  console.log("demande du reservation du taxi declenché")
   var requestDetails = {
       patientId : "1",
       patientName : "Random",
@@ -55,6 +56,8 @@ requestforHelp = () => {
   }
   //Emitting the request event
   //@App Component
+  console.log(this.state.addressPatient)
+  console.log(this.state.userLocation)
   socket.emit("request-for-help",requestDetails);
 }
 
@@ -89,11 +92,19 @@ handleOnResult = (event) => {
 
 
 render() {
-  console.log(this.state.ambulanceLocation.latitude)
+  //console.log(this.state.ambulanceLocation.latitude)
   const {displayName,address} = this.state;
   return (
     <div>
-      <button type="button" className="btn btn-primary" onClick={this.requestforHelp}>Reserver une taxi</button>
+      <button type="button" className="btn btn-primary" onClick={()=>this.requestforHelp()}>Reserver une taxi</button>
+      <div>
+      --  vous localosation est en longitude : {this.state.userLocation.longitude}
+      </div>
+      <div>
+      --  vous localosation est en latitude : {this.state.userLocation.latitude}
+
+      </div>
+      
       <div class="heading">
       {displayName && address ? (
         <div>

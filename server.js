@@ -38,6 +38,10 @@ if (process.env.NODE_ENV === 'production') {
 var server = app.listen(4000, () => {
     console.log(`le serveur socket est en marche`);
 });
+
+// starting server 
+var io =require("socket.io")(server);
+
 // app.use(routes);
 app.use(cors());
 
@@ -55,7 +59,6 @@ app.get('/user', function (req, res) {
     });
 });
 
-var io =require("socket.io")(server);
 
 //Connecting all types of users
 io.on('connection', (socket) => {
@@ -74,7 +77,7 @@ io.on('connection', (socket) => {
 //@User Component
 
 socket.on('request-for-help',(data) => {
-alert("demande de reservation via socket")
+//alert("demande de reservation via socket")
 console.log("demande de reservation en marche")
     const requestTime = new Date();
     const requestId = mongoose.Types.ObjectId();
@@ -113,6 +116,7 @@ console.log("demande de reservation en marche")
         for(let i=0;i<result.length;i++)
         {
             //Emitting the event to the nearby ambulances
+            
             //@App component
             console.log(result,"hello");
             io.to(result[i].displayName).emit("request",data);
