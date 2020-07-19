@@ -17,4 +17,4 @@ export default {
   updateAppointment(id) {
     return axios.put(`/api/appointments/${id}`);
   },
-};
+};  

@@ -7,10 +7,11 @@ const routes = require('./routes');
 const User = require('./models/User')
 const http = require("http");
 const cors = require('cors');
-const requestModel = require("./models/request");
+const requestModel = require("./model/request");
 const myMethods = require("./routes/ambulance");
 const method = myMethods.method;
 const otherMethod = myMethods.otherMethod;
+const Reservation = require ('./models/patient-location');
 
 
 // Connect to the Mongo DB
@@ -26,6 +27,13 @@ mongoose.connect("mongodb+srv://sihem:sihem1234@cluster0-kw40z.mongodb.net/test?
 // Configure body parser for axios requests
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.post('/api/reservations', (req, res) => {
+  const reservation = new Reservation ({ 
+    longitude: req.body.longitude,
+    latitude:req.body.latitude
+ })
+  reservation.save();
+});
 
 // Require all models
 const db = require('./models');

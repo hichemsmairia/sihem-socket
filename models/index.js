@@ -10,4 +10,5 @@ module.exports = {
   SymptomJournal: require('./symptom'),
   Prescription: require('./prescription'),
   License: require('./license'),
+  PatientLocation:require('./patient-location')
 };

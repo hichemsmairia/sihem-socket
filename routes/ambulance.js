@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const ambulanceModel = require("../models/ambulance");
+const ambulanceModel = require("../model/ambulance");
 
 router.post('/',(req,res) => {
     const {ambulanceid} = req.body;

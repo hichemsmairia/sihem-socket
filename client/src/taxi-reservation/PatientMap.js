@@ -3,10 +3,10 @@ import socketIOClient from 'socket.io-client'
 import ReactMapGL, { GeolocateControl,NavigationControl, Marker} from 'react-map-gl'
 import Geocoder from 'react-map-gl-geocoder'
 import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
-import "./App.css"
+import axios from "axios"
+
 import { Button } from 'reactstrap';
 
-const socket =  socketIOClient("http://localhost:4000/patientmap")
 
 class PatientMap extends Component {
   constructor(props) {
@@ -28,42 +28,16 @@ class PatientMap extends Component {
     }
 }
 
-componentDidMount() {
-  socket.on("request-sent",(data) => {
-    var setAmbulanceLocation = {
-      latitude : data.ambulanceLocation.latitude,
-      longitude : data.ambulanceLocation.longitude
-    }
-    this.setState ({
-        displayName : data.displayName,
-        address : data.address,
-        ambulanceLocation : setAmbulanceLocation
-    })
-  })
-}
 
 
 
-requestforHelp = () => {
-  console.log("demande du reservation du taxi declenché")
-  var requestDetails = {
-      patientId : "1",
-      patientName : "Random",
-      location: {
-          addressPatient: this.state.addressPatient,
-          userLocation : this.state.userLocation
-      }
-  }
-  //Emitting the request event
-  //@App Component
-  console.log(this.state.addressPatient)
-  console.log(this.state.userLocation)
-  socket.emit("request-for-help",requestDetails);
-}
 
 //Map Integration
 mapRef = React.createRef()
  
+
+
+
   handleViewportChange = (viewport) => {
     this.setState({
       viewport: { ...this.state.viewport, ...viewport }
@@ -88,32 +62,47 @@ handleOnResult = (event) => {
     addressPatient : event.result.place_name,
     userLocation : patientLocation
   })
+  
+  
 }
 
 
+
+SaveReservation = (e) => {
+e.preventDefault() 
+  const userObject = {
+    longitude: this.state.userLocation.longitude,
+    latitude: this.state.userLocation.latitude
+  };
+  axios.post('http://localhost:3001/api/reservation', userObject)
+  .then((res) => {
+    console.log("reservation termine avec succes")
+      console.log(res.data)
+  }).catch((error) => {
+      console.log(error)
+  });
+}
+
+
+
 render() {
-  //console.log(this.state.ambulanceLocation.latitude)
+  
   const {displayName,address} = this.state;
   return (
-    <div>
-      <button type="button" className="btn btn-primary" onClick={()=>this.requestforHelp()}>Reserver une taxi</button>
-      <div>
-      --  vous localosation est en longitude : {this.state.userLocation.longitude}
-      </div>
-      <div>
-      --  vous localosation est en latitude : {this.state.userLocation.latitude}
-
-      </div>
+    <div className="container">
+      <br></br>
+      <br></br>
+      latitude : 
+      {this.state.userLocation.latitude}
       
+      longitude : 
+      {this.state.userLocation.longitude}
+    <div class="row">
+      
+      <button type="button" className="btn btn-primary" onClick={this.requestforHelp}>Reserver une taxi</button>
+      <button type="button" className="btn btn-primary" onClick={this.SaveReservation}>Reserver une taxi</button>
       <div class="heading">
-      {displayName && address ? (
-        <div>
-           <h3>le taxi {displayName} est en route pour vous  </h3>
-           <h3> c'est a :  {address}</h3> 
-        </div>
-      ) : (
-        <h3> </h3>
-      )}
+      
       </div>
       <div className = "map">
         <ReactMapGL
@@ -135,10 +124,10 @@ render() {
 
             {Object.keys(this.state.ambulanceLocation).length !== 0 ? (
           <Marker
-            latitude={this.state.ambulanceLocation.latitude}
-            longitude={this.state.ambulanceLocation.longitude}
+            latitude={this.state.userLocation.latitude}
+            longitude={this.state.userLocation.longitude}
           >
-            <img className="marker" src="ambulancemarker.png"></img>
+            <img className="marker"  style={{width:"75px"}} src="ambulancemarker.png"></img>
           </Marker>
         ) : ( 
           <Marker
@@ -151,6 +140,7 @@ render() {
 
         </ReactMapGL>
       </div>
+  </div>
   </div>
   );
 }

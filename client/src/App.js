@@ -47,8 +47,8 @@ import Signup from './containers/Signup';
 // Importing the 404 page
 import NoMatch from './containers/NoMatch';
 
-import TaxiMap from './ambulance-src/TaxiMap' ; 
-import PatientMap from './ambulance-src/PatientMap' ; 
+import TaxiMap from './taxi-reservation/TaxiMap' ; 
+import PatientMap from './taxi-reservation/PatientMap.js' ; 
 
 
 // App theme customization.

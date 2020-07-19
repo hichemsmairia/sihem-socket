@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const ambulanceModel = require("../models/ambulance");
+const ambulanceModel = require("../../");
 
-router.post('/',(req,res) => {
+router.post('/addtaxidetails',(req,res) => {
     const {ambulanceid} = req.body;
     const {displayName} = req.body;
     const {phone} = req.body;
@@ -45,9 +45,10 @@ const nearestAmbulance = (longitude,latitude,maxDistance) => {
 
 
 router.get('/info/:ambulanceid', (req,res) => {
-    const {ambulanceid} = req.params;
+    const {ambulanceid} = 01;
     ambulanceModel.findOne({
-        ambulanceid 
+    ambulanceid 
+ 
     }).then((result) => {
         res.json(result);
     }).catch((err) => {
