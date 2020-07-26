@@ -3,28 +3,29 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const PatientSchema = new Schema({
-  firstname: {
+
+const ReservationSchema = new Schema({
+
+  fulladdress: {
     type: String,
     trim: true,
     required: 'First name is required',
   },
-  lastname: {
+  longitude: {
     type: String,
     trim: true,
     required: 'Last name is required',
   },
-  address : {  
-    type: String , 
-    trim : true , 
-    required : 'address is required' ,
-  },
-  phone: {
+  latitude: {
     type: String,
     trim: true,
-    required: 'phone is Required',
+    unique:true,
   },
-  // `date` must be of type Date. The default value is the current date
+  accepted:{
+    type:Boolean,
+    default:false,
+  },
+
   userCreated: {
     type: Date,
     default: Date.now,
@@ -32,7 +33,7 @@ const PatientSchema = new Schema({
 });
 
 // This creates our model from the above schema, using mongoose's model method
-const Patient = mongoose.model('Patient', PatientSchema);
+const Reservation = mongoose.model('Reservation', ReservationSchema);
 
-// Export the Doctor model
-module.exports = Patient;
+// Export the Reservation model
+module.exports = Reservation;

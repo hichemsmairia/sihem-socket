@@ -18,10 +18,10 @@ import SymptomJournal from './containers/SymptomJournal';
 // Importing the DoctorList page component.
 import doctorSymptoms from './containers/SymptomJournal/doctorSymptoms';
 import LicenseList from './containers/Licenses/LicenseList';
+import ReservationList from './containers/Reservation/ReservationList';
+import TaxiReservation from './containers/Reservation/taxi-reservation';
 
-import Historique from './containers/Taxi/Historique'
 
-import TaxiProfile from './containers/Taxi/TaxiProfile'
 
 import DoctorList from './containers/DoctorsList';
 
@@ -32,13 +32,13 @@ import PatientList from './containers/PatientsList';
 // Importing the Appointments page component.
 import Appointments from './containers/Appointments';
 // Importing the My health log page component.
-import TaxiverificationCode from './containers/Taxi/TaxiVerificationCode'
 import PatientAppointments from './containers/Appointments/PatientAppointments'
 import MedLog from './containers/MedLog';
 // Importing the Prescriptions page
 import Prescriptions from './containers/Prescriptions';
 // Importing the Charts page
 import doctorLog from './containers/MedLog/doctorLog'
+// charts 
 import Charts from './containers/Charts';
 // Importing the Login page
 import Login from './containers/Login';
@@ -47,8 +47,6 @@ import Signup from './containers/Signup';
 // Importing the 404 page
 import NoMatch from './containers/NoMatch';
 
-import TaxiMap from './taxi-reservation/TaxiMap' ; 
-import PatientMap from './taxi-reservation/PatientMap.js' ; 
 
 
 // App theme customization.
@@ -79,21 +77,18 @@ class App extends Component {
             <Switch>
 
 // route for socket io localisation
-            <Route path="/taximap" component= {TaxiMap} />
-    <Route path ="/patientmap" exact component={PatientMap} />
+            
 
               <Route exact path="/" render={props => <Login {...props} setUser={this.setUser}></Login>}/>
               <Route exact path="/signup" component={Signup} 
                 loggedInUser = {this.state.currentlyLoggedInUser}/>
               <Route exact path="/home" component={Home} />
               <Route exact path="/patient-payment" component={PaymentForm}/>
-              <Route exact path="/taxiverificationcode" component={TaxiverificationCode} />
-
+             <Route exact path="/patient-reservation" component={ReservationList} />
               <Route exact path="/managetaxidriver" component={LicenseList} />
-              <Route exact path="/historique" component={Historique} />
-                            <Route exact path="/taxihome" component={TaxiHome} />
-
-              <Route exact path="/taxiprofile" component={TaxiProfile} />
+              
+              <Route exact path="/taxihome" component={TaxiHome} />
+        <Route exact path="/taxi-reservation" component={TaxiReservation} />
               <Route exact path="/doctorLog" component={doctorLog} />
               <Route exact path="/doctorSymptoms" component={doctorSymptoms} />
               <Route exact path="/patienthome" component={PatientHome} />

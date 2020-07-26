@@ -7,15 +7,12 @@ const routes = require('./routes');
 const User = require('./models/User')
 const http = require("http");
 const cors = require('cors');
-const requestModel = require("./model/request");
-const myMethods = require("./routes/ambulance");
-const method = myMethods.method;
-const otherMethod = myMethods.otherMethod;
-const Reservation = require ('./models/patient-location');
+
+
 
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb+srv://sihem:sihem1234@cluster0-kw40z.mongodb.net/test?retryWrites=true&w=majority" , {useNewUrlParser : true,
+mongoose.connect("mongodb+srv://sihem:sihem@sihem-ellefi.va3cn.mongodb.net/<dbname>?retryWrites=true&w=majority" , {useNewUrlParser : true,
     useUnifiedTopology: true,
     useCreateIndex : true})
 .then(() => console.log('base de donnes connecté'))
@@ -27,13 +24,7 @@ mongoose.connect("mongodb+srv://sihem:sihem1234@cluster0-kw40z.mongodb.net/test?
 // Configure body parser for axios requests
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.post('/api/reservations', (req, res) => {
-  const reservation = new Reservation ({ 
-    longitude: req.body.longitude,
-    latitude:req.body.latitude
- })
-  reservation.save();
-});
+
 
 // Require all models
 const db = require('./models');
@@ -48,7 +39,6 @@ var server = app.listen(4000, () => {
 });
 
 // starting server 
-var io =require("socket.io")(server);
 
 // app.use(routes);
 app.use(cors());
@@ -68,83 +58,11 @@ app.get('/user', function (req, res) {
 });
 
 
-//Connecting all types of users
-io.on('connection', (socket) => {
-    console.log("un utilisateur utilise le socket.io");
 
-//taxi drivers joinning seperate rooms
-    socket.on('join' ,(data) => {  
-      console.log("operation de join reussit")
-    socket.join(data.displayName);
-    console.log(`le taxist a rejoint le ${data.displayName}`)
-})
+
+        
+
     
-
-
-//Listening for booking event fron patient
-//@User Component
-
-socket.on('request-for-help',(data) => {
-//alert("demande de reservation via socket")
-console.log("demande de reservation en marche")
-    const requestTime = new Date();
-    const requestId = mongoose.Types.ObjectId();
-    const location = {
-        addressPatient : data.addressPatient,
-        coordinates : [
-            data.location.userLocation.longitude,
-            data.location.userLocation.latitude
-        ]
-    }
-    const patientId = data.patientId;
-    const status = "waiting";
-
-    const request = new requestModel({
-        requestId,
-        requestTime,
-        location,
-        patientId,
-        status
-    })
-
-    //Saving request to the database
-    request.save().then((request) => {
-        console.log("request of help saved to database");
-        console.log(location.coordinates[0]);
-    console.log(location.coordinates[1]);
-    }).catch((err) => {
-        console.log(err);
-    })
-
-    //Fetching nearest ambulance
-    console.log(location.coordinates[0]);
-    console.log(location.coordinates[1]);
-    const nearestAmbulance =  otherMethod(location.coordinates[0],location.coordinates[1],5000);
-    nearestAmbulance.then((result) => {
-        for(let i=0;i<result.length;i++)
-        {
-            //Emitting the event to the nearby ambulances
-            
-            //@App component
-            console.log(result,"hello");
-            io.to(result[i].displayName).emit("request",data);
-            
-        }
-    }).catch((err) => {
-        console.log(err);
-    })
-    });
-
-    //Listening for the event from ambulance 
-    //@App Component
-    socket.on("request-accepted", (data) => {
-        ambulanceDetails = data;
-        //Emitting the event to the patient
-        //@User Component
-        io.emit("request-sent",ambulanceDetails);
-    })
-})
-
 
 //for url encoding
 app.use(express.urlencoded({
@@ -154,7 +72,6 @@ app.use(express.urlencoded({
 app.use(bodyParser.json());
 
 //Initializing Routes
-app.use('/api/ambulance',method);
 
 // Route for saving a new Health Log to the db and associating it with a User
 app.post('/submit', function (req, res) {
@@ -199,7 +116,6 @@ app.get('/populateduser', function (req, res) {
 
 
 // If deployed, use the deployed database. Otherwise use the local reacthealthtracker database
-var MONGODB_URI = "mongodb+srv://sihem:sihem@cluster0-sjb5s.mongodb.net/test?retryWrites=true&w=majority" ;
 
 // Set mongoose to leverage built in JavaScript ES6 Promises
 // Connect to the Mongo DB

@@ -241,7 +241,7 @@ handleLicenseAddressChange = (event) => {
                     handleLicenseAddressChange={this.handleLicenseAddressChange} 
                     LicenseFirstNameError = {this.state.LicenseFirstNameError}
                     LicenseLastNameError = {this.state.LicenseLastNameError}
-                    LicenseCodecError = {this.state.LicenseMdError}
+                    LicenseCodeError = {this.state.LicenseMdError}
                     LicensePhoneError = {this.state.LicensePhoneError} 
                     LicenseAddressError = {this.state.LicenseAddressError}
                     LicenseFormSuccessMessage = {this.state.LicenseFormSuccessMessage}

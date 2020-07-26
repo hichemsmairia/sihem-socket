@@ -7,12 +7,22 @@ const mdRoutes = require('./mds');
 const logRoutes = require('./logs');
 const prescriptionRoutes = require('./prescriptions');
 const licenseRoutes = require ('./licenses')
+const reservationRoutes = require('./reservations')
 
 
 module.exports = function(passport){
+
+
     // Symptoms 
     router.use('/symptoms', symptomRoutes());
 
+
+    // les reservations 
+
+    router.use('/reservations', reservationRoutes()); 
+
+    // les licenses 
+    
         router.use('/licenses', licenseRoutes());
 
     // Appointments

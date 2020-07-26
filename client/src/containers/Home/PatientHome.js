@@ -104,11 +104,11 @@ class PatientHome extends Component {
 
             <Grid item xs={12} sm={6} md={4} className={classes.headline}>
               <Typography align="center" className={classes.heading}>
-                reserver taxi maintenant  
+                Reserver taxi maintenant  
               </Typography>
               <Subhead align="center">
                 <Link
-                  href="/patientmap"
+                  href="/patient-reservation"
                 >
                   <img src={bookTaxi} alt="line graph" />
                 </Link>
