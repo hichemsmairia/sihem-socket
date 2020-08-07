@@ -284,14 +284,7 @@ setPosition = () =>  {
                 </Typography>
               </Grid>
             </Grid>
-            <Grid container spacing={24}>
-              <Grid item xs={12}>
-                <Typography variant="display1" align="left">
-                 votre position est : {this.state.longitude} , {this.state.latitude}
-                  
-                </Typography>
-              </Grid>
-            </Grid>
+            
         <button variant="display1" align="left" onClick={()=>this.setPosition()} > Definir votre localisation automatiquement </button>
             <div className="main-content-section">
               <Grid container spacing={16}>
@@ -325,7 +318,7 @@ setPosition = () =>  {
 
         <Geocoder
           mapRef={this.mapRef}
-          placeholder="         saisir votre addresse"
+          placeholder="Veuillez saisir votre addresse"
           
           onResult={this.handleOnResult}
           onViewportChange={this.handleGeocoderViewportChange}

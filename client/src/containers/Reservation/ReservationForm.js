@@ -73,7 +73,8 @@ class ReservationForm extends Component {
               </Button>
               <Typography className={classes.formSuccess} component="p">{this.props.ReservationFormSuccessMessage}</Typography>
              <div>- methode 1 : saisir votre addresse</div> 
-                <div>- methode 2 : obtenir automatiquement votre addresse</div>  
+                <div>- methode 2 : obtenir automatiquement votre addresse</div>
+                <div>- methode 3 : selectionner un taxist depuis la liste</div>  
           </CardContent>
         </Card>
         </div>

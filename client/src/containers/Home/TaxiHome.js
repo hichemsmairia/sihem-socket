@@ -78,9 +78,9 @@ class PatientHome extends Component {
                   </Typography>
               <Subhead align="center">
                 <Link
-                  href="/taximap"
+                  href="/taxi-reservation"
                 >
-                  <img src={journal} alt="taxi map" />
+                  <img src={journal} alt="carte des reservations " />
                 </Link>
               </Subhead>
             </Grid>

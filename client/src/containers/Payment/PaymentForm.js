@@ -24,13 +24,8 @@ class PaymentForm extends Component {
     render() {
         return (
                 <div>
-                    <h1>Historique de paiement</h1>
-                        <table>
-                            <tr>
-                                <td>colone 1</td>
-                                <td>colone 2 </td>
-                            </tr>
-                        </table>
+                    
+                      
                         <div id="PaymentForm">
         <Cards
           cvc={this.state.cvc}
@@ -39,15 +34,43 @@ class PaymentForm extends Component {
           name={this.state.name}
           number={this.state.number}
         />
-        <form>
+        <form style={{"margin": "16px 505px"}}>
+        <br>
+          </br>
         	<input
-            type="tel"
+            type="number"
             name="number"
             placeholder="Card Number"
             onChange={this.handleInputChange}
             onFocus={this.handleInputFocus}
           />
-          ...
+           <br>
+          </br>
+          <input
+            type="month"
+            name="expiry"
+            placeholder="Date d'expirtation"
+            onChange={this.handleInputChange}
+            onFocus={this.handleInputFocus}
+          />
+           <br>
+          </br>
+          <input
+            type="text"
+            name="name"
+            placeholder="votre nom"
+            onChange={this.handleInputChange}
+            onFocus={this.handleInputFocus}
+          />
+          <br>
+          </br>
+          <input
+            type="number"
+            name="cvc"
+            placeholder="cvc code"
+            onChange={this.handleInputChange}
+            onFocus={this.handleInputFocus}
+          />
         </form>
       </div> 
 

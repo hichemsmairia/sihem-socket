@@ -45,7 +45,7 @@ class ReservationInfo extends React.Component {
         <List className={classes.logItem} key={this.props.id}>
           <ListItem>
             <ListItemText >
-              <b>Addresse du patient :</b> {this.props.FullAddress} 
+              <b>Address du patient :</b> {this.props.FullAddress} 
             </ListItemText>
           </ListItem>
 
@@ -67,7 +67,7 @@ class ReservationInfo extends React.Component {
             </ListItemText>
           </ListItem>
 
-                  
+          
 
           
             <Button size="small" color="primary" variant="raised" className={classes.button} onClick={() => { this.props.deleteReservation(this.props.id); }}>Supprimer</Button>

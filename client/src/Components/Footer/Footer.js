@@ -30,15 +30,11 @@ class Footer extends React.Component {
     return (
       <Card className="footer">
         <CardContent>
-          <Typography gutterBottom variant="headline" component="h2" className={classes.footerContent}>
-            HealthTracker
-          </Typography>
+         
           <Typography component="p" className={classes.footerContent}>
             Sihem ellefi 2020
           </Typography>
-          <Typography component="p" className={classes.copyright}>
-           PFE
-          </Typography>
+          
         </CardContent>
       </Card>
     );

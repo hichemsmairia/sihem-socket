@@ -21,7 +21,7 @@ import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 import Grid from 'material-ui/Grid';
 // Import Sidebar component.
-import Sidebar from '../../Components/Sidebar';
+import Sidebar from '../../Components/Sidebar/taxiSidebar';
 
 //Style
 const styles = theme => ({
@@ -68,7 +68,7 @@ class TaxiReservation extends Component {
     this.loadReservations()
     setTimeout(function(){
         window.location.reload(1);
-     }, 10000000);
+     }, 10000);
 
      navigator.geolocation.getCurrentPosition(position => {
       this.setState({taxilongitude:position.coords.longitude,taxilatitude:position.coords.latitude})
@@ -130,6 +130,7 @@ class TaxiReservation extends Component {
                          acceptReservation= { this.acceptReservation }
                          taxilongitude = {this.state.taxilongitude}
                          taxilatitude={this.state.taxilatitude}
+                         
                          />
                           
                       );

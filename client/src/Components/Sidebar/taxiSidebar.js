@@ -44,16 +44,7 @@ class Sidebar extends React.Component {
               </ListItemText>
             </ListItem>
             
-            <ListItem className={classes.navItem} component={Link} to="/appointments">
-              <ListItemText>
-                <Tooltip
-                  title="Appointments"
-                  placement="top"
-                >
-                  <IconButton><i className="fas fa-calendar-alt" /></IconButton>
-                </Tooltip>
-              </ListItemText>
-            </ListItem>
+            
                                     
           </List>
         </Drawer>
@@ -62,4 +53,4 @@ class Sidebar extends React.Component {
   }
 }
 
-export default withStyles(styles)(taxiSidebar);
+export default withStyles(styles)(Sidebar);

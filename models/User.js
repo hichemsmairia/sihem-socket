@@ -61,66 +61,56 @@ const UserSchema = new Schema({
     type:String,
     trim:true,
   },
-  // `date` must be of type Date. The default value is the current date
+  
   userCreated: {
     type: Date,
     default: Date.now,
   },
   patients: [
     {
-      // Store ObjectIds in the array
+      
       type: Schema.Types.ObjectId,
-      // The ObjectIds will refer to the ids in the Note model
+      
       ref: 'Patient',
     },
   ],
-  // `doctors` is an array that stores ObjectIds
-  // The ref property links these ObjectIds to the Note model
-  // This allows us to populate the User with any associated Doctors
+  
   doctors: [
     {
-      // Store ObjectIds in the array
+      
       type: Schema.Types.ObjectId,
-      // The ObjectIds will refer to the ids in the Note model
+      
       ref: 'Doctor',
     },
   ],
-  // `clinics` is an array that stores ObjectIds
-  // The ref property links these ObjectIds to the Note model
-  // This allows us to populate the User with any associated clinics
+  
   clinics: [
     {
-      // Store ObjectIds in the array
+      
       type: Schema.Types.ObjectId,
-      // The ObjectIds will refer to the ids in the Note model
+      
       ref: 'Clinic',
     },
   ],
-  // `healthLog` is an array that stores ObjectIds
-  // The ref property links these ObjectIds to the Note model
-  // This allows us to populate the User with any associated medLog
+  
   healthLogs: [
     {
-      // Store ObjectIds in the array
+      
       type: Schema.Types.ObjectId,
-      // The ObjectIds will refer to the ids in the Note model
+     
       ref: 'HealthLog',
     },
   ],
-  // `prescriptions` is an array that stores ObjectIds
-  // The ref property links these ObjectIds to the Note model
-  // This allows us to populate the User with any associated prescriptions
+ 
   prescriptions: [
     {
-      // Store ObjectIds in the array
+     
       type: Schema.Types.ObjectId,
-      // The ObjectIds will refer to the ids in the Note model
+      
       ref: 'Prescription',
     },
   ],
-    // `attachment` is an array that stores ObjectIds
-  // The ref property links these ObjectIds to the Note model
-  // This allows us to populate the User with any associated attachment
+    
   attachments: [
     {
       // Store ObjectIds in the array

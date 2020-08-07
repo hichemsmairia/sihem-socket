@@ -71,6 +71,17 @@ class ReservationInfoTaxi extends React.Component {
             <ListItem>
             <ListItemText >
 
+              <b> Prix du cette mission taxi (le prix unitaire/Km : 0.2 DT) : </b>
+              {geolib.getDistance({latitude:this.props.Latitude,longitude:this.props.Longitude}, {
+                latitude: this.props.taxilatitude,
+                longitude: this.props.taxilongitude,
+            }) * 0.0002}  DT  
+            </ListItemText>  
+            </ListItem>
+
+            <ListItem>
+            <ListItemText >
+
               <b>  Distance de patient par rapport votre localisation : </b>
               {geolib.getDistance({latitude:this.props.Latitude,longitude:this.props.Longitude}, {
                 latitude: this.props.taxilatitude,
@@ -78,6 +89,9 @@ class ReservationInfoTaxi extends React.Component {
             })/1000} Kilometres  
             </ListItemText>  
             </ListItem>
+
+
+
             <Button size="small" color="primary" variant="raised" className={classes.button} onClick={() => { this.props.acceptReservation(this.props.id); }}>
                 {this.props.Status ? "Reservation deja accepté":"Accepter la reservation"}
             </Button>

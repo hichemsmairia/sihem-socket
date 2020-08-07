@@ -17,7 +17,7 @@
 /* Color of site background */
 /* #03A9f4*/
 body {
-  background-color: rgba(50, 115, 220, 0.3);
+  background-color: white ; 
 }
 
 /* Color of top navigation bar */
@@ -25,7 +25,7 @@ body {
 .appBar {
   background-color: #33658A !important;
   padding-bottom: 20px;
-  border-bottom: 8px solid #2F4858;
+  border-bottom: 8px solid #33658A;
 }
 
 /* Color of headers */
@@ -39,9 +39,9 @@ a {
 }
 
 .footer {
-  background-color: #33658A !important;
+  background-color: #1bc6dd !important;
   color: 'white';
-  border-top: 8px solid #2F4858;
+  border-top: 8px solid #1bc6dd;
 }
 
 

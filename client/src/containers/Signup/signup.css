@@ -25,8 +25,8 @@ body,input{
   color:#4c4c4c;
 }
 body{
-  background-color:#292931;
-  background:url(https://i0.imgpile.com/2016/09/14/7861aab59aa07c9499278339f41522c3.jpg)  no-repeat center center fixed; 
+  background-color:transparent;
+  background:url(https://i.pinimg.com/originals/16/22/09/162209350090430221514e9bf92b2cc9.jpg)  no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -48,7 +48,7 @@ a:hover{
   text-decoration: underline;
   
 }
-input[type=text], input[type=password] {
+input[type=text], input[type=password] , input[type=number] , input[type=month] {
   width: 200px;
   height: 38px;
   border:1px solid #cbc9c9;
